@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# !/usr/bin/env python
 import tkinter as tk
 from tkinter import messagebox
 from random import randint, choice, shuffle
