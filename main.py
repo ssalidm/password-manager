@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 from random import randint, choice, shuffle
 import pyperclip
+import json
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -31,20 +32,35 @@ def save():
     website = entry_website.get()
     email = entry_email.get()
     password = entry_password.get()
+    new_data = {
+        website: {
+            "email": email,
+            "password": password,
+        }
+    }
 
     if len(website) == 0 or len(password) == 0 or len(email) == 0:
-        messagebox.showinfo(title="Oops", message="Please don't leave any fields empty!")
+        messagebox.showinfo(
+            title="Oops", message="Please don't leave any fields empty!")
         return
-
-    is_ok = messagebox.askokcancel(title=website,
-                                   message=f"These are the details entered: \nEmail: {email} \nPassword: {password}"
-                                           f" \n\nIs it ok to save?")
-
-    if is_ok:
-        with open("data.txt", "a") as data_file:
-            data_file.write(f"{website} | {email} | {password}\n")
-            entry_website.delete(0, tk.END)
-            entry_password.delete(0, tk.END)
+    
+    try:
+        with open("data.json", "r") as data_file:
+            # Reading existing data
+            data = json.load(data_file)
+            # Updating existing data
+            data.update(new_data)
+    except (FileNotFoundError, json.decoder.JSONDecodeError):    
+        with open("data.json", "w") as data_file:
+            # Saving initial data
+            json.dump(new_data, data_file, indent=4)
+    else:
+        with open("data.json", "w") as data_file:
+            # Saving updated data
+            json.dump(data, data_file, indent=4)
+    finally:        
+        entry_website.delete(0, tk.END)
+        entry_password.delete(0, tk.END)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -81,7 +97,8 @@ entry_password = tk.Entry(root, width=30, bd=1)
 entry_password.grid(column=1, row=3, pady=3, padx=0, sticky='w')
 
 # Buttons
-button_generate_password = tk.Button(root, text="Generate Password", borderwidth=1, command=generate_password)
+button_generate_password = tk.Button(
+    root, text="Generate Password", borderwidth=1, command=generate_password)
 button_generate_password.grid(column=2, row=3, padx=0, pady=3, sticky='e')
 
 button_Add = tk.Button(root, text="Add", width=43, borderwidth=1, command=save)

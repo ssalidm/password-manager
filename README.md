@@ -1,4 +1,4 @@
-# Password Manager - Python GUI Application Version 1.0
+# Password Manager - Python GUI Application Version 2.0
 
 This is a simple password manager application built using Python and the Tkinter library. It allows users to generate secure passwords and store their website login details in a text file.
 
