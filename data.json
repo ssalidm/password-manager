@@ -6,5 +6,9 @@
     "amazon.com": {
         "email": "name@example.com",
         "password": "!2+HqlhIppS%5cR"
+    },
+    "ebay.com": {
+        "email": "name@example.com",
+        "password": "K1zL)083oE&yLW"
     }
 }

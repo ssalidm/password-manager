@@ -1,4 +1,0 @@
-netflix.com | name@example.com | &I7w44(YFHjTMC
-amazon.com | name@example.com | u7!QxSql&6gOu
-
-, json.decoder.JSONDecodeError

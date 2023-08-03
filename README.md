@@ -1,58 +1,54 @@
-# Password Manager - Python GUI Application Version 2.0
+# Password Manager
 
-This is a simple password manager application built using Python and the Tkinter library. It allows users to generate secure passwords and store their website login details in a text file.
+This simple Password Manager application is built using Python's `tkinter` library and allows you to generate, save, and retrieve passwords for various websites. Keep your login credentials organized and secure with this user-friendly tool!
 
 ## Features
 
-- Generate strong passwords consisting of letters (both upper and lower case), numbers, and symbols.
-- Store website login details (website URL, email/username, and password) in a local text file.
-- User-friendly graphical user interface (GUI) built with Tkinter.
+1. **Password Generator:** Generate strong and secure passwords with a combination of letters (lowercase and uppercase), numbers, and symbols.
 
-## Screenshots
+2. **Save Passwords:** Store website URLs, corresponding email/usernames, and passwords securely in a local data file.
 
-![Alt text](screenshots/image.png)
-
-## Getting Started
-
-Follow the steps below to run the Password Manager application on your local machine:
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/ssalidm/password-manager.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd password-manager
-```
-
-3. Install the required packages (make sure you have Python installed):
-
-```bash
-pip install -r requirements.txt
-```
-
-4. Run the application:
-
-```bash
-python main.py
-```
+3. **Search Functionality:** Easily find and retrieve your saved passwords by searching for the website URL.
 
 ## How to Use
 
-1. Launch the Password Manager application using the steps provided above.
+1. **Generate Password:** Click the "Generate Password" button to create a strong password that you can use for your new accounts.
 
-2. **Generate Password:** Click on the "Generate Password" button to create a secure password. The generated password will be automatically filled in the password input field.
+2. **Add New Entry:** Fill in the "Website," "Email/Username," and "Password" fields. Then click the "Add" button to save the entry securely in the data file.
 
-3. **Save Website Details:** Enter the website URL, email/username, and password in the corresponding input fields. Click on the "Add" button to save the website details in a local text file named "data.txt."
+3. **Retrieve Password:** To retrieve a saved password, enter the website URL in the "Website" field and click the "Search" button. If the entry exists, the application will display the website, email/username, and password.
 
-4. **Exit:** Close the application by clicking the "x" button on the window's title bar.
+## Dependencies
 
-## Contributing
+- Python 3.x
+- tkinter (should come pre-installed with most Python distributions)
+- pyperclip
 
-Contributions are welcome! If you find any bugs or want to add new features, feel free to create an issue or submit a pull request.
+## Getting Started
+
+1. Clone the repository to your local machine.
+2. Make sure you have Python 3.x installed.
+3. Install the required dependencies (if not already installed).
+```
+pip install -r requirements.txt
+```
+4. Run the application using the following command:
+
+```
+python3 password_manager.py
+```
+
+## Screenshot
+
+![Password Manager Screenshot](screenshots/screenshot.png)
+
+## Note
+
+This application saves your data locally in a file called "data.json" in the same directory as the script. Keep this file secure and avoid sharing it with others.
+
+**Caution:** While this application can help you manage your passwords, it is essential to remain cautious and use additional security measures, such as two-factor authentication, for sensitive accounts.
+
+Enjoy a more organized and secure online experience with this Password Manager! If you encounter any issues or have suggestions for improvement, feel free to reach out. Happy coding!
 
 ## License
 

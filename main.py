@@ -1,4 +1,4 @@
-# !/usr/bin/env python
+# !/usr/bin/env python3
 import tkinter as tk
 from tkinter import messagebox
 from random import randint, choice, shuffle
@@ -63,7 +63,25 @@ def save():
         entry_password.delete(0, tk.END)
 
 
-# ---------------------------- UI SETUP ------------------------------- #
+# ---------------------------- FIND PASSWORD ------------------------------- #
+def find_password():
+    try:
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+    except (FileNotFoundError, json.decoder.JSONDecodeError):
+        messagebox.showwarning(title="No data saved", message="You do not have any data saved.")
+    else:
+        website = entry_website.get()        
+        if website in data:
+            email = data[website]['email']
+            password = data[website]['password']
+            search_result = f"Website: {website}\nUsername: {email}\nPassword: {password}"
+            messagebox.showinfo(title=website, message=search_result)
+        else:
+            messagebox.showerror(title="Error", message=f"No details for {website} found.")
+
+
+# ------------------------------- UI SETUP --------------------------------- #
 root = tk.Tk()
 root.title("Password Manager")
 root.config(padx=40, pady=30)
@@ -85,24 +103,27 @@ label_password = tk.Label(root, text="Password:")
 label_password.grid(column=0, row=3, sticky='e')
 
 # Entries
-entry_website = tk.Entry(root, width=50)
+entry_website = tk.Entry(root, width=30, bd=1)
 entry_website.focus()
-entry_website.grid(column=1, row=1, columnspan=2, pady=2)
+entry_website.grid(column=1, row=1, pady=3, padx=4, sticky='ew')
 
-entry_email = tk.Entry(root, width=50)
+entry_email = tk.Entry(root, width=51)
 entry_email.insert(0, "name@example.com")
-entry_email.grid(column=1, row=2, columnspan=2, pady=2)
+entry_email.grid(column=1, row=2, columnspan=2, pady=2, padx=(4,0), sticky='ew')
 
 entry_password = tk.Entry(root, width=30, bd=1)
-entry_password.grid(column=1, row=3, pady=3, padx=0, sticky='w')
+entry_password.grid(column=1, row=3, pady=3, padx=4, sticky='ew')
 
 # Buttons
 button_generate_password = tk.Button(
-    root, text="Generate Password", borderwidth=1, command=generate_password)
+    root, text="Generate Password", borderwidth=1, width=15, command=generate_password)
 button_generate_password.grid(column=2, row=3, padx=0, pady=3, sticky='e')
 
 button_Add = tk.Button(root, text="Add", width=43, borderwidth=1, command=save)
-button_Add.grid(column=1, row=4, columnspan=2, pady=3, padx=0, sticky='w')
+button_Add.grid(column=1, row=4, columnspan=2, pady=3, padx=(4,0), sticky='ew')
+
+button_search = tk.Button(text="Search", borderwidth=1, width=15, command=find_password)
+button_search.grid(column=2, row=1, sticky='ew')
 
 # run app
 root.mainloop()
